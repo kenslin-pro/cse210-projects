@@ -7,6 +7,7 @@ class Program
   {
     Console.WriteLine("Hello Develop02 World!");
 
+
         public string _filename = "";
   public List<Entry> _entries = new List<Entry>();
   public void Display()
@@ -28,7 +29,7 @@ class Program
   }
   public void LoadFile()
   {
-    string[] lines = System.IO.File.ReadAllLines(_filename);
+    string[] lines = System.File.ReadAllLines(_filename);
     foreach (string line in lines)
     {
       string[] parts = line.Split(",");
