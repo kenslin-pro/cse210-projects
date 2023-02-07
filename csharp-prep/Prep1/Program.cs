@@ -13,5 +13,6 @@ class Program
 
     Console.WriteLine($"your first name is{name1} and second name is{name2}");
 
+
   }
 }
