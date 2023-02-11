@@ -6,6 +6,7 @@ class Program
   static void Main(string[] args)
   {
     Console.WriteLine("Hello Develop02 World!");
+    // the options that user can choose
     {
       string journal = new Journal();
       while (true)
@@ -29,6 +30,9 @@ class Program
           DateTime theCurrentTime = DateTime.Now;
           newEntry._date = theCurrentTime.ToShortDateString();
           journal._entries.Add(newEntry);
+
+          //The use of if statement
+
         }
         else if (choice == 2)
         {
@@ -51,6 +55,7 @@ class Program
         {
           break;
         }
+        // list of random options
 
       }
       static string GetRandomPrompt()
@@ -66,6 +71,9 @@ class Program
         Random random = new Random();
         int index = random.Next(prompts.Count);
         return prompts[index];
+
+        // date and time
+
       }
       public class Entry
   {
