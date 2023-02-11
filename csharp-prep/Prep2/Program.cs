@@ -44,5 +44,22 @@ class Program
     {
       Console.WriteLine("Better luck next time!");
     }
+    string strz = "This is me";
+    string upperstrz = strz.ToUpper();
+    Console.WriteLine(upperstrz);
+    string str = "kenslin";
+    int index1 = str.IndexOf("s");
+    Console.WriteLine($"the index is{index1}");
+
+    int a = 20;
+    a++;
+    {
+      Console.WriteLine(a);
+    }
+    string value = "Do Not pass";
+    char first = value[0];
+    {
+      Console.WriteLine(first);
+    }
   }
 }
