@@ -6,9 +6,10 @@ class Program
   static void Main(string[] args)
   {
     Console.WriteLine("Hello Develop02 World!");
+
     // the options that user can choose
     {
-      string journal = new Journal();
+      Journal journal = new Journal();
       while (true)
       {
         Console.Write("Choose one from the following");
@@ -29,7 +30,7 @@ class Program
           newEntry._response = Console.ReadLine();
           DateTime theCurrentTime = DateTime.Now;
           newEntry._date = theCurrentTime.ToShortDateString();
-          journal._entries.Add(newEntry);
+          journal._entries.Add(newEntries);
 
           //The use of if statement
 
@@ -84,6 +85,8 @@ class Program
     {
       Console.WriteLine($"Date: {_date} - prompt: {_prompt}\n{_response} ");
       Console.WriteLine();
+
+
     }
   }
 }
