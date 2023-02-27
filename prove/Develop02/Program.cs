@@ -30,7 +30,7 @@ class Program
           newEntry._response = Console.ReadLine();
           DateTime theCurrentTime = DateTime.Now;
           newEntry._date = theCurrentTime.ToShortDateString();
-          journal._entries.Add(newEntries);
+          journal._entries.Add(newEntry);
 
           //The use of if statement
 
@@ -76,19 +76,19 @@ class Program
         // date and time
 
       }
-      public class Entry
-  {
+
+      {
     public string _date = "";
-    public string _prompt = "";
-    public string _response = "";
-    public void Format()
-    {
-      Console.WriteLine($"Date: {_date} - prompt: {_prompt}\n{_response} ");
-      Console.WriteLine();
+  public string _prompt = "";
+  public string _response = "";
+  public void Format()
+  {
+    Console.WriteLine($"Date: {_date} - prompt: {_prompt}\n{_response} ");
+    Console.WriteLine();
 
 
-    }
   }
+}
 }
 
 

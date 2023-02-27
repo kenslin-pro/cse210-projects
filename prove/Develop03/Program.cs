@@ -1,126 +1,162 @@
 using System;
 
-class Program
-{
 
 
-  static void Main(string[] args)
-  {
-    Console.WriteLine("Hello Develop03 World!");
-  }
-  string scripture = newScripture(" Mathew 4:6;For he will command his angels concerning you. to guard you in all your ways; they will lift you up in their hands, so that you will not strike your foot against a stone..");
-
-  Console.Clear();
-
-scripture.DisplayScripture();
-
-while (true)
+using System.Collections.Generic;
 
 
-{
 
-    Console.WriteLine("Type quit to exit");
-    
-    string userInput = Console.ReadLine();
+using System.Linq;
 
 
-    if (userInput.ToLower() == "quit")
 
 
-}
-{
 
-}
-else
-{
-  // Clear the console screen and hide a random word in the scripture
+public class Program
 
-  Console.Clear();
 
-  scripture.HideWord();
-
-  scripture.DisplayScripture();
-
-  if (scripture.AllWordsHidden())
-
-    Console.WriteLine("Great,the scripture has been memorized!");
-}
-break;
-class Scripture
 
 {
 
-  private string reference;
-  private string text;
-  private List<string> hiddenWords;
 
-  public Scripture(string reference, string text)
-  {
 
-    this.reference = reference;
-    this.text = text;
-    this.hiddenWords = new List<string>();
+  static void Main()
 
-  }
-  public void DisplayScripture()
+
 
   {
 
-    Console.WriteLine(reference);
 
-    string[] words = text.Split(' ');
 
-    foreach (string word in words)
+    // Create a new scripture
+
+
+
+    Scripture scripture = new Scripture("John 3:16", "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.");
+
+
+
+
+
+    // Clear the console screen and display the complete scripture
+
+
+
+    Console.Clear();
+
+
+
+    scripture.DisplayScripture();
+
+
+
+
+
+    // Prompt the user to press enter or type quit
+
+
+
+    while (true)
+
+
 
     {
 
-      if (hiddenWords.Contains(word))
+
+
+      Console.WriteLine("Press enter to hide a word or type quit to exit:");
+
+
+
+      string userInput = Console.ReadLine();
+
+
+
+
+
+      // If the user types quit, end the program
+
+
+
+      if (userInput.ToLower() == "quit")
+
+
 
       {
 
-        Console.Write("_____ ");
+
+
+        break;
+
+
 
       }
+
+
 
       else
 
+
+
       {
 
-        Console.Write(word + " ");
+
+
+        // Clear the console screen and hide a random word in the scripture
+
+
+
+        Console.Clear();
+
+
+
+        scripture.HideWord();
+
+
+
+        scripture.DisplayScripture();
+
+
+
+
+
+        // Check if all words have been hidden
+
+
+
+        if (scripture.AllWordsHidden())
+
+
+
+        {
+
+
+
+          Console.WriteLine("Congratulations, you have memorized the scripture!");
+
+
+
+          break;
+
+
+
+        }
+
+
 
       }
 
+
+
     }
 
-    Console.WriteLine();
+
 
   }
 
-  public void HideWord()
 
-  {
-
-    string[] words = text.Split(' ');
-
-    Random rand = new Random();
-
-    int index = rand.Next(words.Length);
-
-    string wordToHide = words[index];
-
-    hiddenWords.Add(wordToHide);
-
-  }
-
-  public bool AllWordsHidden()
-
-  {
-
-    string[] words = text.Split(' ');
-
-    return hiddenWords.Count == words.Length;
-
-  }
 
 }
+
+
 
