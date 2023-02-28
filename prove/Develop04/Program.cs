@@ -13,7 +13,7 @@ class Program
     {
       Name = "Listing Activity",
       Description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.",
-      Duration = 10,
+      Duration = 15,
       Prompts = new List<string>
         {
             "Who are people that you appreciate?",
@@ -28,7 +28,7 @@ class Program
     {
       Name = "Reflection Activity",
       Description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.",
-      Duration = 7,
+      Duration = 9,
       Prompts = new List<string>
         {
             "Think of a time when you stood up for someone else.",
@@ -53,8 +53,8 @@ class Program
     BreathingActivity breathingActivity = new BreathingActivity
     {
       Name = "Breathing Activity",
-      Description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.",
-      Duration = 5
+      Description = "This activity will help you calm by taking you through inhaling and exhaling slowly. Just relax and focus on your breathing.",
+      Duration = 10
     };
 
     // Show the menu and let the user choose an activity
