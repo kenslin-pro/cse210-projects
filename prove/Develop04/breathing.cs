@@ -1,21 +1,40 @@
-public class BreathingActivity : Activity
+public class Breathing : Activity
 {
-  public override void RunActivity()
+  public Breathing() : base()
   {
-    Console.WriteLine($"Starting {Name} which will last for {Duration} seconds.");
-    Console.WriteLine($"Description: {Description}");
-    Console.WriteLine("Prepare to begin...");
-    System.Threading.Thread.Sleep(3500);
+    _name = "Breathing";
+    _duration = 0;
+    _description = "This activity will help you relax by walking you through breathing in and out exercise in a guided set of time";
+  }
 
-    Console.WriteLine("Inhale...");
-    System.Threading.Thread.Sleep(Duration * 1200);
-    Console.WriteLine("Exhale...");
-    System.Threading.Thread.Sleep(Duration * 1200);
+  public void Breathe()
+  {
+    for (int i = 5; i >= 0; i--)
+    {
+      Console.Write($"\rBreathe in... {i}");
+      Thread.Sleep(1200);
+    }
+    Console.WriteLine("");
 
-    Console.WriteLine("Good job!");
-    Console.WriteLine($"You have completed the {Name} activity for {Duration} seconds.");
-    Console.WriteLine("Thank you for participating.");
+    for (int j = 5; j >= 0; j--)
+    {
+      Console.Write($"\rNow breathe out... {j}");
+      Thread.Sleep(1200);
+    }
+
+  }
+
+  public void RunActivity()
+  {
+    GetDuration(_duration);
+    DateTime currentTime = DateTime.Now;
+    while (currentTime < _endTime)
+    {
+      Breathe();
+      currentTime = DateTime.Now;
+      Console.WriteLine("");
+
+    }
   }
 }
-
 

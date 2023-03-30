@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public abstract class Goal
 {
-  public string Name { get; set; }
-  public int Points { get; set; }
+  public string Name;
+  public int Points;
 
   public Goal(string name, int points)
   {

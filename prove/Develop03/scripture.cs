@@ -1,112 +1,94 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-class program
-
+public class Scripture
 {
 
-  static void Main()
-
+  public Scripture(Reference reference, string scripture)
   {
+    _reference = reference;
+    _words = CreateWordList(scripture);
+  }
 
-    //  t he new scripture
+  private Reference _reference { get; set; }
 
-    Scripture scripture = new Scripture("Mathew 4:6", "For he will command his angels concerning you. to guard you in all your ways; they will lift you up in their hands, so that you will not strike your foot against a stone.");
+  private List<Word> _words { get; set; }
 
-    // display the full scripture
+  private int _difficulty { get; set; }
 
-    Console.Clear();
+  private List<Word> CreateWordList(string scripture)
+  {
+    var wordList = new List<Word>();
 
-    scripture.DisplayScripture();
-
-    while (true)
-
+    foreach (var word in scripture.Split(" "))
     {
+      var insert = new Word(word);
+      wordList.Add(insert);
+    }
 
-      Console.WriteLine("Press enter to hide a word or type quit to exit:");
-      string userInput = Console.ReadLine();
+    return wordList;
+  }
 
-      // quit the program
-
-      if (userInput.ToLower() == "quit")
-
+  public void HideWords()
+  {
+    foreach (var word in _words)
+    {
+      if (!word.IsHidden())
       {
-
-        break;
-
-      }
-
-      else
-
-      {
-
-        // Clear the console and hide words in the scripture
-
-        Console.Clear();
-
-        scripture.HideWord();
-
-        scripture.DisplayScripture();
-        // Check if all the hidden words
-
-        if (scripture.AllWordsHidden())
+        var random = new Random();
+        if (random.Next(_difficulty) == 0)
         {
-          Console.WriteLine("You have done an amazing job by memorizing the scripture");
-          break;
+          word.Hide();
         }
-
       }
 
     }
-
   }
-}
-class Scripture
-{
-  private string reference;
-  private string text;
-  private List<string> hiddenWords;
-  public Scripture(string reference, string text)
-  {
-    this.reference = reference;
-    this.text = text;
-    this.hiddenWords = new List<string>();
-  }
-  public void DisplayScripture()
-  {
-    // Display the scripture
 
-    Console.WriteLine(reference);
-    string[] words = text.Split(' ');
-    foreach (string word in words)
+  public void SetDifficulty()
+  {
+    Console.WriteLine("To Set level1 enter a number from 1-4. (1 = Hardest - 4 = Easiest)");
+    var input = Console.ReadLine();
+    try
     {
-
-      // Check hidden words
-      if (hiddenWords.Contains(word))
+      var difficulty = Int32.Parse(input);
+      if (difficulty > 4)
       {
-        Console.Write("_____ ");
+        _difficulty = 4;
+      }
+      else if (difficulty < 1)
+      {
+        _difficulty = 1;
       }
       else
       {
-        Console.Write(word + " ");
+        _difficulty = difficulty;
       }
     }
-    Console.WriteLine();
-  }
-  public void HideWord()
-  {
-    string[] words = text.Split(' ');
-    Random rand = new Random();
-    int index = rand.Next(words.Length);
-    string wordToHide = words[index];
-    hiddenWords.Add(wordToHide);
-  }
-  public bool AllWordsHidden()
-  {
-    string[] words = text.Split(' ');
-    return hiddenWords.Count == words.Length;
+    catch (Exception)
+    {
+      _difficulty = 2;
+    }
   }
 
+  public string GetRenderedText()
+  {
+    var scripture = "";
+    scripture += _reference.GetRenderedText();
+    foreach (var word in _words)
+    {
+      scripture += $" {word.GetRenderedText()}";
+    }
+    return scripture;
+  }
+
+  public bool IsCompletelyHidden()
+  {
+    foreach (var word in _words)
+    {
+      if (!word.IsHidden())
+      {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 

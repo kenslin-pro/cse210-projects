@@ -1,34 +1,50 @@
-public class ListingActivity : Activity
+public class Listing : Activity
 {
-  // The list of prompts
-  public List<string> Prompts { get; set; }
 
-  public override void RunActivity()
+  public Listing() : base()
   {
+    _name = "Listing";
+    _duration = 0;
+    _description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+  }
 
-    Console.WriteLine($"Starting {Name} which will last for {Duration} seconds.");
-    Console.WriteLine($"Description: {Description}");
-    Console.WriteLine("Prepare to begin...");
-
-    // Pause calculation
-    System.Threading.Thread.Sleep(3000);
+  public string GetRandomPrompt()
+  {
+    List<string> prompts = new List<string>()
+        {
+            "Who are people that you appreciate?",
+            "What are personal strengths of yours?",
+            "When have you felt the Holy Ghost this month?"
+        };
     Random random = new Random();
-    int promptIndex = random.Next(0, Prompts.Count - 1);
-    Console.WriteLine(Prompts[promptIndex]);
-    System.Threading.Thread.Sleep(Duration * 1000);
+    int index = random.Next(prompts.Count);
+    string randPrompt = prompts[index];
+    prompts.Remove(randPrompt);
+    return randPrompt;
 
-    Console.WriteLine("Start listing...");
-    int itemCount = 0;
-    while (Duration > 0)
+  }
+
+  public void DisplayRandomPrompt()
+  {
+    string randPrompt = GetRandomPrompt();
+    Console.WriteLine(randPrompt);
+  }
+
+  public void RunActivity()
+  {
+    int items = 0;
+    GetDuration(_duration);
+    DisplayRandomPrompt();
+    DateTime currentTime = DateTime.Now;
+    while (currentTime < _endTime)
     {
-      string input = Console.ReadLine();
-      itemCount++;
-      Duration--;
-    }
+      Console.Write(">");
+      Console.ReadLine();
+      items += 1;
+      currentTime = DateTime.Now;
 
-    Console.WriteLine("Great job!");
-    Console.WriteLine($"You have completed the {Name} activity for {Duration} seconds and listed {itemCount} items.");
-    Console.WriteLine("I appretiate your participation.");
+    }
+    Console.WriteLine($"You listed {items} items!");
   }
 }
 
